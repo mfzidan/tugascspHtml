@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Profil</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src https://*; child-src 'none';">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 700px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-cari {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-cari input {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-cari button {
+            width: 30%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .form-cari button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Masukkan Nama</h1>
+        <div>
+            <form class="form-cari" onsubmit="return submitForm(event)">
+                <input type="text" id="keyword" placeholder="Username..." autocomplete="off">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div id="container">
+            <table id="data-table">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        let noCounter = 1;
+        function submitForm(event) {
+            event.preventDefault();
+            const username = document.getElementById("keyword").value.trim();
+            if (username) {
+                const table = document.getElementById("data-table");
+                // Buat baris baru
+                const row = table.insertRow();
+                const cellNo = row.insertCell(0);
+                const cellName = row.insertCell(1);
+                // Isi data ke dalam sel
+                cellNo.textContent = noCounter++;
+                cellName.textContent = username;
+                // Kosongkan input
+                document.getElementById("keyword").value = '';
+            }
+        }
+    </script>
+</body>
+</html>
